@@ -14,10 +14,13 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	public UserRoleModel addUser(UserRoleModel user) {
-		String pass = encrypt(user.getPassword());
-		user.setPassword(pass);
-		return userDb.save(user);
-		
+		String regex = "^(?=.*[0-9])(?=.*[a-z]).{8,}$";
+		if(user.getPassword().matches(regex)) {
+			String pass = encrypt(user.getPassword());
+			user.setPassword(pass);
+			return userDb.save(user);
+		}
+		return null;
 	}
 
 	@Override
@@ -32,11 +35,17 @@ public class UserRoleServiceImpl implements UserRoleService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if(passwordEncoder.matches(password_lama, userDb.findByUsername(username).getPassword())) {
 			if(password_baru.equals(konfirmasi_password)) {
-				String pass = encrypt(password_baru);
-				userDb.findByUsername(username).setPassword(pass);
-				userDb.save(userDb.findByUsername(username));
+				String regex = "^(?=.*[0-9])(?=.*[a-z]).{8,}$";
+				if(userDb.findByUsername(username).getPassword().matches(regex)) {
+					String pass = encrypt(password_baru);
+					userDb.findByUsername(username).setPassword(pass);
+					userDb.save(userDb.findByUsername(username));
+				}
+				
 			}
 		}
 		
 	}
+	
+	
 }
