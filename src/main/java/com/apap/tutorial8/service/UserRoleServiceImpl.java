@@ -17,6 +17,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 		String pass = encrypt(user.getPassword());
 		user.setPassword(pass);
 		return userDb.save(user);
+		
 	}
 
 	@Override
@@ -28,10 +29,14 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	public void updatePassword(String username, String password_lama, String password_baru, String konfirmasi_password) {
-		// TODO Auto-generated method stub
-		if(password_baru.equals(konfirmasi_password)) {
-			String pass = encrypt(password_baru);
-			userDb.findByUsername(username).setPassword(password_baru);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(passwordEncoder.matches(password_lama, userDb.findByUsername(username).getPassword())) {
+			if(password_baru.equals(konfirmasi_password)) {
+				String pass = encrypt(password_baru);
+				userDb.findByUsername(username).setPassword(pass);
+				userDb.save(userDb.findByUsername(username));
+			}
 		}
+		
 	}
 }
