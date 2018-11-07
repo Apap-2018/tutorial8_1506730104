@@ -20,4 +20,10 @@ public class UserRoleController {
 		userService.addUser(user);
 		return "home";
 	}
+	
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+	private String updatePasswordSubmit(String username, String password_lama, String password_baru, String konfirmasi_password) {
+		userService.updatePassword(username, password_lama, password_baru, konfirmasi_password);
+		return "home";
+	}
 }

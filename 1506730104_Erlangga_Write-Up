@@ -1,0 +1,5 @@
+Apa fungsi BCryptPasswordEncoder?
+Meng-enkripsi string password dari user sehingga dalam database akan tersimpan dalam bentuk terenkripsi (kombinasi karakter yang sulit diterka). User hanya perlu memasukkan password seperti biasa ketika login ke dalam sistem
+
+Apa yang dilakukan baris berikut? (Method pada kelas UserDetailsServiceImpl.java)
+Menentukan otorisasi yang dapat diberikan kepada user sesuai dengan role yang dimiliki.

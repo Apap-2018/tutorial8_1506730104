@@ -25,4 +25,13 @@ public class UserRoleServiceImpl implements UserRoleService {
 		String hashedPassword = passwordEncoder.encode(password);
 		return hashedPassword;
 	}
+
+	@Override
+	public void updatePassword(String username, String password_lama, String password_baru, String konfirmasi_password) {
+		// TODO Auto-generated method stub
+		if(password_baru.equals(konfirmasi_password)) {
+			String pass = encrypt(password_baru);
+			userDb.findByUsername(username).setPassword(password_baru);
+		}
+	}
 }

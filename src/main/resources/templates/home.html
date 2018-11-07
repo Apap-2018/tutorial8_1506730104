@@ -43,6 +43,36 @@
         </div>
         
         <div class="row">
+        	<div class="col-md-6">
+        		<div class="card">
+        			<div class="card-header">
+        				Update Password
+        			</div>
+        		</div>
+        		<div class="card-body">
+        			<form th:action="@{/user/updatePassword}" method="post">
+        				<input class="col-sm-8 form-control input-sm" th:value="${#httpServletRequest.remoteUser}" type="hidden" name="username"/>
+        				<div class="row form-group">
+        					<label class="col-sm-4">Password Lama</label>
+        					<input class="col-sm-8 form-control input-sm" type="password" name="password_lama"/>
+        				</div>
+        				<div class="row form-group">
+        					<label class="col-sm-4">Password Baru</label>
+        					<input class="col-sm-8 form-control input-sm" type="password" name="password_baru"/>
+        				</div>
+        				<div class="row form-group">
+        					<label class="col-sm-4">Konfirmasi Password Baru</label>
+        					<input class="col-sm-8 form-control input-sm" type="password" name="konfirmasi_password"/>
+        				</div>
+        				<div>
+        					<button type="submit" class="btn btn-primary">Simpan</button>
+        				</div>
+        			</form>
+        		</div>
+        	</div>
+        </div>
+        
+        <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
