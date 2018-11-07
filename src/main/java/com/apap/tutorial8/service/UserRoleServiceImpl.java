@@ -36,7 +36,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 		if(passwordEncoder.matches(password_lama, userDb.findByUsername(username).getPassword())) {
 			if(password_baru.equals(konfirmasi_password)) {
 				String regex = "^(?=.*[0-9])(?=.*[a-z]).{8,}$";
-				if(userDb.findByUsername(username).getPassword().matches(regex)) {
+				if(password_baru.matches(regex)) {
 					String pass = encrypt(password_baru);
 					userDb.findByUsername(username).setPassword(pass);
 					userDb.save(userDb.findByUsername(username));
